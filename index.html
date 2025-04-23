@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OFF-SEASON ALLDAY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rockwell&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -33,11 +34,15 @@
         }
 
         header h1 {
-            font-size: 24px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
             color: #e50914;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         header h1 span {
+            font-family: 'Arial', sans-serif;
             font-size: 14px;
             color: #b3b3b3;
             display: block;
@@ -59,7 +64,7 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://i.pinimg.com/736x/57/cb/0f/57cb0feaa58e2b2735769846af69faf6.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -86,10 +91,12 @@
         }
 
         .treinos h2 {
+            font-family: 'Rockwell', serif;
             text-align: center;
-            font-size: 32px;
+            font-size: 36px;
             margin-bottom: 40px;
             color: #e50914;
+            letter-spacing: 1px;
         }
 
         .treinos-grid {
@@ -183,6 +190,23 @@
             color: #fff;
         }
 
+        /* Botão Copiar */
+        .copy-btn {
+            background: #e50914;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: #c40812;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -211,8 +235,7 @@
 </head>
 <body>
     <header>
-        <h1>OFF-SEASON ALLDAY<span>By @orickmax
-        </span></h1>
+        <h1>OFF-SEASON ALLDAY<span>By @orickmax</span></h1>
         <nav>
             <a href="#home">Home</a>
             <a href="#treinos">Treinos</a>
@@ -222,39 +245,39 @@
 
     <section class="hero" id="home">
         <div class="hero-content">
-            <h2>Meus Treinos</h2>
-            <p>Organize e acompanhe seus treinos de academia com motivação e estilo. Transforme sua rotina fitness!</p>
+            <h2>GYM HUB</h2>
+            <p>VEIO LER OU TREINAR? OFF-SEASON SUPREMACY</p>
         </div>
     </section>
 
     <section class="treinos" id="treinos">
         <h2>OFF-SEASON ALLDAY</h2>
         <div class="treinos-grid">
-            <div class="treino-card" onclick="openModal('Treino A')">
-                <img src="imagens/A.png" alt="A - Bíceps/Tríceps">
+            <div class="treino-card" onclick="openModal('Treino A - PEITO/OMBRO')">
+                <img src="imagens/A.png" alt="A - Peito">
                 <div class="treino-card-content">
                     <h3>A - Peito</h3>
-                    <p>Foco em peito e tríceps. Ideal para força e hipertrofia.</p>
+                    <p>Foco em peito com técnicas old school para hipertrofia.</p>
                 </div>
             </div>
-            <div class="treino-card" onclick="openModal('Treino B')">
-                <img src="imagens/B.png" alt="B - Peito">
+            <div class="treino-card" onclick="openModal('Treino B - COSTAS')">
+                <img src="imagens/B.png" alt="B - Costas">
                 <div class="treino-card-content">
-                    <h3>B - Peito</h3>
-                    <p>Treino de costas e bíceps para equilíbrio muscular.</p>
+                    <h3>B - Costas</h3>
+                    <p>Treino de costas old school para largura e densidade.</p>
                 </div>
             </div>
-            <div class="treino-card" onclick="openModal('Treino C')">
-                <img src="imagens/C.png" alt="C - Pernas">
+            <div class="treino-card" onclick="openModal('Treino C - BÍCEPS/TRÍCEPS')">
+                <img src="imagens/C.png" alt="C - Bíceps e Tríceps">
                 <div class="treino-card-content">
-                    <h3>C - Pernas</h3>
-                    <p> Pernas e glúteos para base sólida e potência.</p>
+                    <h3>C - Bíceps e Tríceps</h3>
+                    <p>Foco em braços com técnicas old school e bi-sets.</p>
                 </div>
             </div>
-            <div class="treino-card" onclick="openModal('Treino D')">
-                <img src="imagens/D.png" alt="D - Costas">
+            <div class="treino-card" onclick="openModal('Treino D - LEG DAY💀')">
+                <img src="imagens/D.png" alt="D - Full Body">
                 <div class="treino-card-content">
-                    <h3>D - Costas</h3>
+                    <h3>D - LEG DAY💀</h3>
                     <p>Full body para resistência e condicionamento geral.</p>
                 </div>
             </div>
@@ -266,6 +289,7 @@
             <span class="close-modal" onclick="closeModal()">×</span>
             <h3 id="modal-title"></h3>
             <ul id="modal-exercicios"></ul>
+            <button class="copy-btn" onclick="copyTreino()">Copiar Treino</button>
         </div>
     </div>
 
@@ -275,33 +299,44 @@
 
     <script>
         const treinos = {
-            'Treino A': [
-                'Supino reto - 4x8',
-                'Supino inclinado - 3x10',
-                'Crucifixo - 3x12',
-                'Tríceps pulley - 4x10',
-                'Tríceps testa - 3x12'
+            'Treino A - PEITO/OMBRO': [
+                'Cross Over na Polia Alta - 2x12 reps, 2x6-8 reps',
+                'Cross Over na Polia Baixa - 2x12 reps, 2x6-8 reps',
+                'Crucifixo no Banco Reto - 1x12 reps, 2x6-8 reps',
+                'Supino Articulado (Máquina) - 2x12 reps, 2x6-8 reps',
+                'Supino Inclinado com Halteres - 1x12 reps, 2x6-8 reps',
+                'Fly (Peck Deck ou Máquina) - 3 séries de 6-8 reps'
             ],
-            'Treino B': [
-                'Barra fixa - 4x8',
-                'Remada curvada - 3x10',
-                'Puxada frontal - 3x12',
-                'Rosca direta - 4x10',
-                'Rosca martelo - 3x12'
+            'Treino B - COSTAS': [
+                'Contração Serrátil na Polia - 3 séries de 12-15 reps',
+                'Pulley Frente - 2x12 reps, 2x6-8 reps',
+                'Puxada com Triângulo (Pegada Neutra) - 1x12 reps, 2x6-8 reps',
+                'Remada Curvada (Barra ou Halter) - 2x12 reps, 2x6-8 reps',
+                'Remada Estilo Ronnie Coleman - 3 séries de 6-8 reps',
+                'Remada Unilateral com Halter (Serrote) - 2x12 reps, 2x6-8 reps'
             ],
-            'Treino C': [
-                'Agachamento livre - 4x8',
-                'Leg press - 3x10',
-                'Cadeira extensora - 3x12',
-                'Elevação pélvica - 4x10',
-                'Panturrilha - 3x15'
+            'Treino C - BÍCEPS/TRÍCEPS': [
+                'Aquecimento – Série Combinada (Bi-Set com Pirâmide)',
+                'Bíceps no Cabo (Piramidal) - 2 séries, aumentando carga e reduzindo reps',
+                'Tríceps na Polia com Triângulo (Piramidal) - 2 séries, aumentando carga e reduzindo reps',
+                '--- Treino Principal ---',
+                'BÍCEPS:',
+                'Rosca Alternada com Halteres - 3 séries de 12 reps',
+                'Rosca Scott (Barra ou Máquina) - 4 séries de 12 reps',
+                'Rosca Concentrada - 3 séries de 10 reps',
+                'TRÍCEPS:',
+                'Tríceps Testa (Barra W ou Halteres) - 3 séries de 12 reps',
+                'Tríceps Francês (Banco ou Polia Alta) - 3 séries de 12 reps',
+                'Tríceps Invertido na Polia - 3 séries de 10 reps (com 3 segundos de isometria no final)',
+                '--- Finalização ---',
+                'Flexões - 1 série de 20+ reps (falha)'
             ],
-            'Treino D': [
-                'Supino reto - 3x10',
-                'Remada baixa - 3x10',
-                'Agachamento livre - 3x10',
-                'Desenvolvimento de ombros - 3x12',
-                'Abdominais - 3x15'
+            'Treino D - LEG DAY💀': [
+                'Cadeira Extensora - 2x12 2x6-8',
+                'Agachamento Smith - 2x12 2x6-8',
+                'Leg Press - 4x6-8',
+                'Cadeira Flexora - 2x12 2x6-8',
+                'Cadeira Abdutora - 4x15'
             ]
         };
 
@@ -326,6 +361,21 @@
             modal.style.display = 'none';
         }
 
+        function copyTreino() {
+            const modalTitle = document.getElementById('modal-title').textContent;
+            const modalExercicios = Array.from(document.getElementById('modal-exercicios').getElementsByTagName('li'))
+                .map(li => li.textContent)
+                .join('\n');
+            const textToCopy = `${modalTitle}\n\n${modalExercicios}`;
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert('Treino copiado para a área de transferência!');
+            }).catch(err => {
+                console.error('Erro ao copiar o treino: ', err);
+                alert('Erro ao copiar o treino. Tente novamente.');
+            });
+        }
+
         // Fechar modal ao clicar fora
         document.getElementById('modal').addEventListener('click', (e) => {
             if (e.target === document.getElementById('modal')) {
@@ -333,5 +383,6 @@
             }
         });
     </script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'934f78d7e9c4457b',t:'MTc0NTQzMzQ0NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>

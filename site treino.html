@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Treinos - OFF-SEASON ALLDAY</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #141414;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 24px;
+            color: #e50914;
+        }
+
+        header h1 span {
+            font-size: 14px;
+            color: #b3b3b3;
+            display: block;
+            margin-top: 5px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #e50914;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-content h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Treinos Section */
+        .treinos {
+            padding: 50px 20px;
+        }
+
+        .treinos h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #e50914;
+        }
+
+        .treinos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .treino-card {
+            background: #222;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .treino-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .treino-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .treino-card-content {
+            padding: 20px;
+        }
+
+        .treino-card-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .treino-card-content p {
+            font-size: 14px;
+            color: #b3b3b3;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: #222;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-content h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #e50914;
+        }
+
+        .modal-content ul {
+            list-style: none;
+        }
+
+        .modal-content ul li {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #111;
+            font-size: 14px;
+            color: #b3b3b3;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero-content h2 {
+                font-size: 32px;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            nav a {
+                margin-left: 10px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>OFF-SEASON ALLDAY<span>By @orickmax
+        </span></h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#treinos">Treinos</a>
+            <a href="#sobre">Sobre</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Meus Treinos</h2>
+            <p>Organize e acompanhe seus treinos de academia com motivação e estilo. Transforme sua rotina fitness!</p>
+        </div>
+    </section>
+
+    <section class="treinos" id="treinos">
+        <h2>Meus Treinos</h2>
+        <div class="treinos-grid">
+            <div class="treino-card" onclick="openModal('Treino A')">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438" alt="Treino A">
+                <div class="treino-card-content">
+                    <h3>Treino A</h3>
+                    <p>Foco em peito e tríceps. Ideal para força e hipertrofia.</p>
+                </div>
+            </div>
+            <div class="treino-card" onclick="openModal('Treino B')">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48" alt="Treino B">
+                <div class="treino-card-content">
+                    <h3>Treino B</h3>
+                    <p>Treino de costas e bíceps para equilíbrio muscular.</p>
+                </div>
+            </div>
+            <div class="treino-card" onclick="openModal('Treino C')">
+                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a" alt="Treino C">
+                <div class="treino-card-content">
+                    <h3>Treino C</h3>
+                    <p> Pernas e glúteos para base sólida e potência.</p>
+                </div>
+            </div>
+            <div class="treino-card" onclick="openModal('Treino D')">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b" alt="Treino D">
+                <div class="treino-card-content">
+                    <h3>Treino D</h3>
+                    <p>Full body para resistência e condicionamento geral.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">×</span>
+            <h3 id="modal-title"></h3>
+            <ul id="modal-exercicios"></ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 OFF-SEASON ALLDAY. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const treinos = {
+            'Treino A': [
+                'Supino reto - 4x8',
+                'Supino inclinado - 3x10',
+                'Crucifixo - 3x12',
+                'Tríceps pulley - 4x10',
+                'Tríceps testa - 3x12'
+            ],
+            'Treino B': [
+                'Barra fixa - 4x8',
+                'Remada curvada - 3x10',
+                'Puxada frontal - 3x12',
+                'Rosca direta - 4x10',
+                'Rosca martelo - 3x12'
+            ],
+            'Treino C': [
+                'Agachamento livre - 4x8',
+                'Leg press - 3x10',
+                'Cadeira extensora - 3x12',
+                'Elevação pélvica - 4x10',
+                'Panturrilha - 3x15'
+            ],
+            'Treino D': [
+                'Supino reto - 3x10',
+                'Remada baixa - 3x10',
+                'Agachamento livre - 3x10',
+                'Desenvolvimento de ombros - 3x12',
+                'Abdominais - 3x15'
+            ]
+        };
+
+        function openModal(treino) {
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalExercicios = document.getElementById('modal-exercicios');
+
+            modalTitle.textContent = treino;
+            modalExercicios.innerHTML = '';
+            treinos[treino].forEach(ex => {
+                const li = document.createElement('li');
+                li.textContent = ex;
+                modalExercicios.appendChild(li);
+            });
+
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+
+        // Fechar modal ao clicar fora
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('modal')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

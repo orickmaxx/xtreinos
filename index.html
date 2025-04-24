@@ -14,8 +14,8 @@
         }
 
         body {
-            background: #141414;
-            color: #fff;
+            background: #1B1B1B;
+            color: #FFFFFF;
             overflow-x: hidden;
         }
 
@@ -24,33 +24,36 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            padding: 20px 50px;
+            background: #1B1B1B;
+            padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
         }
 
-        header h1 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 28px;
-            color: #e50914;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        header h1 span {
-            font-family: 'Arial', sans-serif;
-            font-size: 14px;
-            color: #b3b3b3;
+        .logo-container img {
+            width: 150px;
+            height: auto;
             display: block;
+        }
+
+        .logo-container span {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 14px;
+            color: #808080;
             margin-top: 5px;
+            letter-spacing: 1px;
         }
 
         nav a {
-            color: #fff;
+            color: #FFFFFF;
             text-decoration: none;
             margin-left: 20px;
             font-size: 16px;
@@ -58,13 +61,13 @@
         }
 
         nav a:hover {
-            color: #e50914;
+            color: #FFA31A;
         }
 
         /* Hero Section */
         .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://i.pinimg.com/736x/57/cb/0f/57cb0feaa58e2b2735769846af69faf6.jpg');
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('https://i.pinimg.com/736x/ba/2f/6a/ba2f6a82615554114c74eabcabecce6e.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -74,20 +77,38 @@
             padding: 0 20px;
         }
 
-        .hero-content h2 {
-            font-size: 48px;
-            margin-bottom: 20px;
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
 
-        .hero-content p {
-            font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto;
+        .hero-content img {
+            width: 300px;
+            height: auto;
+            display: block;
+        }
+
+        .hero-content a {
+            display: inline-block;
+            background: #FFA31A;
+            color: #1B1B1B;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .hero-content a:hover {
+            background: #FFFFFF;
         }
 
         /* Treinos Section */
         .treinos {
-            padding: 50px 20px;
+            padding: 60px 20px;
+            background: #1B1B1B;
         }
 
         .treinos h2 {
@@ -95,29 +116,30 @@
             text-align: center;
             font-size: 36px;
             margin-bottom: 40px;
-            color: #e50914;
+            color: #FFA31A;
             letter-spacing: 1px;
         }
 
         .treinos-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .treino-card {
-            background: #222;
+            background: #292929;
             border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, border 0.3s;
             cursor: pointer;
+            border: 1px solid #292929;
         }
 
         .treino-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+            border: 1px solid #FFA31A;
         }
 
         .treino-card img {
@@ -132,12 +154,13 @@
 
         .treino-card-content h3 {
             font-size: 24px;
+            color: #FFFFFF;
             margin-bottom: 10px;
         }
 
         .treino-card-content p {
             font-size: 14px;
-            color: #b3b3b3;
+            color: #808080;
         }
 
         /* Modal */
@@ -155,12 +178,12 @@
         }
 
         .modal-content {
-            background: #222;
+            background: #292929;
             padding: 20px;
             border-radius: 8px;
-            max-width: 600px;
+            max-width: 500px;
             width: 90%;
-            max-height: 80vh;
+            max-height: 70vh;
             overflow-y: auto;
             position: relative;
         }
@@ -168,7 +191,7 @@
         .modal-content h3 {
             font-size: 28px;
             margin-bottom: 20px;
-            color: #e50914;
+            color: #FFA31A;
         }
 
         .modal-content ul {
@@ -178,7 +201,7 @@
         .modal-content ul li {
             font-size: 16px;
             margin-bottom: 10px;
-            color: #fff;
+            color: #FFFFFF;
         }
 
         .close-modal {
@@ -187,55 +210,71 @@
             right: 20px;
             font-size: 24px;
             cursor: pointer;
-            color: #fff;
+            color: #FFFFFF;
+        }
+
+        .close-modal:hover {
+            color: #FFA31A;
         }
 
         /* Botão Copiar */
         .copy-btn {
-            background: #e50914;
-            color: #fff;
+            background: #FFA31A;
+            color: #1B1B1B;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
             margin-top: 20px;
             font-size: 16px;
+            font-weight: bold;
             transition: background 0.3s;
         }
 
         .copy-btn:hover {
-            background: #c40812;
+            background: #FFFFFF;
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 20px;
-            background: #111;
+            background: #1B1B1B;
             font-size: 14px;
-            color: #b3b3b3;
+            color: #808080;
         }
 
         /* Responsividade */
         @media (max-width: 768px) {
-            .hero-content h2 {
-                font-size: 32px;
+            .hero {
+                height: 70vh;
             }
 
             header {
-                padding: 20px;
+                padding: 15px;
             }
 
             nav a {
                 margin-left: 10px;
                 font-size: 14px;
             }
+
+            .logo-container img {
+                width: 120px;
+            }
+
+            .hero-content img {
+                width: 200px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>OFF-SEASON ALLDAY<span>By @orickmax</span></h1>
+        <div class="logo-container">
+            <img src="imagens/logo.png" alt="OFF-SEASON ALLDAY Logo">
+            <span>By @orickmax</span>
+        </div>
         <nav>
             <a href="#home">Home</a>
             <a href="#treinos">Treinos</a>
@@ -245,8 +284,8 @@
 
     <section class="hero" id="home">
         <div class="hero-content">
-            <h2>GYM HUB</h2>
-            <p>VEIO LER OU TREINAR? OFF-SEASON SUPREMACY</p>
+            <img src="imagens/logo.png" alt="OFF-SEASON ALLDAY Logo">
+            <a href="#treinos">Ver Treinos</a>
         </div>
     </section>
 
@@ -369,7 +408,11 @@
             const textToCopy = `${modalTitle}\n\n${modalExercicios}`;
 
             navigator.clipboard.writeText(textToCopy).then(() => {
-                alert('Treino copiado para a área de transferência!');
+                const copyBtn = document.querySelector('.copy-btn');
+                copyBtn.textContent = 'Copiado!';
+                setTimeout(() => {
+                    copyBtn.textContent = 'Copiar Treino';
+                }, 2000);
             }).catch(err => {
                 console.error('Erro ao copiar o treino: ', err);
                 alert('Erro ao copiar o treino. Tente novamente.');

@@ -25,7 +25,7 @@
             top: 0;
             width: 100%;
             background: #1B1B1B;
-            padding: 10px 20px;
+            padding: 8px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -39,24 +39,24 @@
         }
 
         .logo-container img {
-            width: 150px;
+            width: 120px;
             height: auto;
             display: block;
         }
 
         .logo-container span {
             font-family: 'Rockwell', serif;
-            font-size: 14px;
+            font-size: 12px;
             color: #808080;
-            margin-top: 5px;
+            margin-top: 3px;
             letter-spacing: 1px;
         }
 
         nav a {
             color: #FFFFFF;
             text-decoration: none;
-            margin-left: 20px;
-            font-size: 16px;
+            margin-left: 15px;
+            font-size: 14px;
             transition: color 0.3s;
         }
 
@@ -82,6 +82,14 @@
             flex-direction: column;
             align-items: center;
             gap: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+
+        .hero-content.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .hero-content img {
@@ -98,11 +106,28 @@
             border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.3s;
+            animation: pulse 1.5s infinite ease-in-out;
         }
 
         .hero-content a:hover {
             background: #FFFFFF;
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 163, 26, 0.7);
+            }
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 0 0 10px rgba(255, 163, 26, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 163, 26, 0);
+            }
         }
 
         /* Treinos Section */
@@ -132,14 +157,23 @@
             background: #292929;
             border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.3s, border 0.3s;
+            transition: transform 0.3s, border 0.3s, box-shadow 0.3s, opacity 0.5s ease-out;
             cursor: pointer;
             border: 1px solid #292929;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .treino-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.5s ease-out;
         }
 
         .treino-card:hover {
-            transform: scale(1.05);
+            transform: scale(1.05) rotate(1deg);
             border: 1px solid #FFA31A;
+            box-shadow: 0 0 15px rgba(255, 163, 26, 0.3);
         }
 
         .treino-card img {
@@ -175,6 +209,12 @@
             align-items: center;
             justify-content: center;
             z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .modal.visible {
+            opacity: 1;
         }
 
         .modal-content {
@@ -186,6 +226,12 @@
             max-height: 70vh;
             overflow-y: auto;
             position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .modal.visible .modal-content {
+            transform: scale(1);
         }
 
         .modal-content h3 {
@@ -211,6 +257,7 @@
             font-size: 24px;
             cursor: pointer;
             color: #FFFFFF;
+            transition: color 0.3s;
         }
 
         .close-modal:hover {
@@ -228,11 +275,12 @@
             margin-top: 20px;
             font-size: 16px;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.3s;
         }
 
         .copy-btn:hover {
             background: #FFFFFF;
+            transform: scale(1.05);
         }
 
         /* Footer */
@@ -251,16 +299,16 @@
             }
 
             header {
-                padding: 10px 15px;
+                padding: 8px 10px;
             }
 
             nav a {
                 margin-left: 10px;
-                font-size: 14px;
+                font-size: 12px;
             }
 
             .logo-container img {
-                width: 120px;
+                width: 100px;
             }
 
             .hero-content img {
@@ -337,6 +385,7 @@
     </footer>
 
     <script>
+        // Dados dos treinos
         const treinos = {
             'Treino A - PEITO/OMBRO': [
                 'Cross Over na Polia Alta - 2x12 reps, 2x6-8 reps',
@@ -379,10 +428,57 @@
             ]
         };
 
+        // Animação da seção Hero ao carregar a página
+        window.addEventListener('load', () => {
+            const heroContent = document.querySelector('.hero-content');
+            if (heroContent) {
+                heroContent.classList.add('visible');
+                console.log('Hero content animation triggered');
+            } else {
+                console.error('Hero content not found');
+            }
+        });
+
+        // Animação dos cards da seção Treinos
+        const treinoCards = document.querySelectorAll('.treino-card');
+        const observerOptions = {
+            root: null,
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                        console.log(`Card ${index} became visible`);
+                    }, index * 200); // Delay para efeito cascata
+                } else {
+                    setTimeout(() => {
+                        entry.target.classList.remove('visible');
+                        console.log(`Card ${index} became hidden`);
+                    }, index * 200); // Delay para efeito cascata ao sumir
+                }
+            });
+        }, observerOptions);
+
+        if (treinoCards.length > 0) {
+            treinoCards.forEach(card => observer.observe(card));
+            console.log('Cards observer initialized');
+        } else {
+            console.error('No treino cards found');
+        }
+
+        // Funções do Modal com animação
         function openModal(treino) {
             const modal = document.getElementById('modal');
             const modalTitle = document.getElementById('modal-title');
             const modalExercicios = document.getElementById('modal-exercicios');
+
+            if (!modal || !modalTitle || !modalExercicios) {
+                console.error('Modal elements not found');
+                return;
+            }
 
             modalTitle.textContent = treino;
             modalExercicios.innerHTML = '';
@@ -393,11 +489,21 @@
             });
 
             modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('visible'), 10);
+            console.log(`Modal opened for ${treino}`);
         }
 
         function closeModal() {
             const modal = document.getElementById('modal');
-            modal.style.display = 'none';
+            if (!modal) {
+                console.error('Modal not found');
+                return;
+            }
+            modal.classList.remove('visible');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+            console.log('Modal closed');
         }
 
         function copyTreino() {
@@ -413,6 +519,7 @@
                 setTimeout(() => {
                     copyBtn.textContent = 'Copiar Treino';
                 }, 2000);
+                console.log('Treino copied to clipboard');
             }).catch(err => {
                 console.error('Erro ao copiar o treino: ', err);
                 alert('Erro ao copiar o treino. Tente novamente.');

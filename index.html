@@ -172,10 +172,11 @@
         }
         .treinos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 320px));
             gap: 25px;
             max-width: 1200px;
             margin: 0 auto;
+            justify-content: center;
         }
         .treino-card {
             background: #1A1A1A;
@@ -184,6 +185,7 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             cursor: pointer;
+            max-width: 320px;
         }
         .treino-card:hover {
             transform: translateY(-5px) scale(1.03);
@@ -192,12 +194,13 @@
         .treino-card img {
             width: 100%;
             height: 180px;
+            max-height: 180px;
             object-fit: cover;
             border-radius: 10px 10px 0 0;
             transition: transform 0.4s ease;
         }
         .treino-card:hover img {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
         .treino-card-content {
             padding: 15px;
@@ -306,6 +309,10 @@
             }
             .treino-card img {
                 height: 150px;
+                max-height: 150px;
+            }
+            .treinos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 320px));
             }
         }
     </style>
@@ -570,38 +577,49 @@
         });
 
         // Search Functionality
-        document.querySelector('.search-bar').addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase().trim();
-            treinoCards.forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                const description = card.querySelector('p').textContent.toLowerCase();
-                const matches = title.includes(searchTerm) || description.includes(searchTerm);
-                card.style.display = matches ? 'block' : 'none';
-            });
-        });
-
-        // Filter Functionality
-        document.querySelectorAll('.treino-filters button').forEach(button => {
-            button.addEventListener('click', () => {
-                document.querySelector('.treino-filters button.active')?.classList.remove('active');
-                button.classList.add('active');
-                const filter = button.dataset.filter;
-                
+        const searchBar = document.querySelector('.search-bar');
+        if (searchBar) {
+            searchBar.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                console.log('Search term:', searchTerm); // Depuração
                 treinoCards.forEach(card => {
                     const title = card.querySelector('h3').textContent.toLowerCase();
-                    let matches = false;
-
-                    if (filter === 'all') {
-                        matches = true;
-                    } else {
-                        const keywords = categoryMap[filter] || [filter];
-                        matches = keywords.some(keyword => title.includes(keyword));
-                    }
-
+                    const description = card.querySelector('p').textContent.toLowerCase();
+                    const matches = title.includes(searchTerm) || description.includes(searchTerm);
                     card.style.display = matches ? 'block' : 'none';
+                    console.log(`Card: ${title}, Matches: ${matches}`); // Depuração
                 });
             });
-        });
+        } else {
+            console.error('Search bar not found');
+        }
+
+        // Filter Functionality
+        const filterButtons = document.querySelectorAll('.treino-filters button');
+        if (filterButtons.length > 0) {
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelector('.treino-filters button.active')?.classList.remove('active');
+                    button.classList.add('active');
+                    const filter = button.dataset.filter;
+                    console.log('Filter applied:', filter); // Depuração
+                    treinoCards.forEach(card => {
+                        const title = card.querySelector('h3').textContent.toLowerCase();
+                        let matches = false;
+                        if (filter === 'all') {
+                            matches = true;
+                        } else {
+                            const keywords = categoryMap[filter] || [filter];
+                            matches = keywords.some(keyword => title.includes(keyword));
+                        }
+                        card.style.display = matches ? 'block' : 'none';
+                        console.log(`Card: ${title}, Filter: ${filter}, Matches: ${matches}`); // Depuração
+                    });
+                });
+            });
+        } else {
+            console.error('Filter buttons not found');
+        }
     </script>
 </body>
 </html>

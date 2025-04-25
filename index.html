@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OFF-SEASON ALLDAY</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rockwell&display=swap" rel="stylesheet">
+    <meta name="description" content="OFF-SEASON ALLDAY: Treinos old school para hipertrofia e condicionamento físico. Explore nossos programas de treino!">
+    <meta name="keywords" content="treino, fitness, hipertrofia, musculação, off-season">
+    <meta property="og:title" content="OFF-SEASON ALLDAY">
+    <meta property="og:description" content="Treinos old school para alcançar seus objetivos de fitness.">
+    <meta property="og:image" content="imagens/logo.png">
+    <meta property="og:url" content="https://seusite.com">
+    <title>OFF-SEASON ALLDAY - Treinos para Hipertrofia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
         }
-
         body {
             color: #FFFFFF;
+            background: #000000;
             overflow-x: hidden;
-            position: relative;
         }
-
-        /* Vídeo de background global */
         #background-video {
             position: fixed;
             top: 0;
@@ -29,8 +34,6 @@
             object-fit: cover;
             z-index: -2;
         }
-
-        /* Overlay global */
         body::before {
             content: '';
             position: fixed;
@@ -38,185 +41,178 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85); /* Overlay escuro */
+            background: rgba(0, 0, 0, 0.9);
             z-index: -1;
         }
-
-        /* Header */
         header {
+            background: #000000;
+            padding: 10px 20px;
             position: fixed;
-            top: 0;
             width: 100%;
-            background: #1B1B1B;
-            padding: 8px 15px;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
+            border-bottom: 1px solid #333333;
         }
-
         .logo-container {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-
         .logo-container img {
-            width: 120px;
-            height: auto;
-            display: block;
+            width: 100px;
+            transition: transform 0.3s ease;
         }
-
+        .logo-container img:hover {
+            transform: scale(1.1);
+        }
         .logo-container span {
-            font-family: 'Rockwell', serif;
             font-size: 12px;
-            color: #808080;
+            color: #999999;
             margin-top: 3px;
-            letter-spacing: 1px;
         }
-
+        nav {
+            display: flex;
+            align-items: center;
+        }
         nav a {
             color: #FFFFFF;
             text-decoration: none;
             margin-left: 15px;
-            font-size: 14px;
-            transition: color 0.3s;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
         }
-
         nav a:hover {
-            color: #FFA31A;
+            background: #F5A623;
+            color: #000000;
         }
-
-        /* Hero Section */
+        .search-bar {
+            background: #333333;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: #FFFFFF;
+            font-size: 14px;
+            margin-left: 15px;
+            transition: all 0.3s ease;
+        }
+        .search-bar:focus {
+            outline: none;
+            background: #444444;
+        }
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 20px;
         }
-
         .hero-content {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 20px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease-out;
         }
-
-        .hero-content.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         .hero-content img {
-            width: 400px;
+            width: 350px;
             height: auto;
-            display: block;
         }
-
         .hero-content a {
-            display: inline-block;
-            background: #FFA31A;
-            color: #1B1B1B;
-            padding: 10px 20px;
-            border-radius: 5px;
+            background: #F5A623;
+            color: #000000;
+            padding: 12px 24px;
+            border-radius: 25px;
             text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s, transform 0.3s;
-            animation: pulse 1.5s infinite ease-in-out;
+            font-weight: 700;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(245, 166, 35, 0.5);
+            transition: all 0.3s ease;
         }
-
         .hero-content a:hover {
             background: #FFFFFF;
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(245, 166, 35, 0.7);
         }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(255, 163, 26, 0.7);
-            }
-            50% {
-                transform: scale(1.02);
-                box-shadow: 0 0 0 10px rgba(255, 163, 26, 0);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(255, 163, 26, 0);
-            }
-        }
-
-        /* Treinos Section */
         .treinos {
-            padding: 60px 20px;
+            padding: 80px 20px;
         }
-
         .treinos h2 {
-            font-family: 'Rockwell', serif;
-            text-align: center;
             font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            color: #F5A623;
             margin-bottom: 40px;
-            color: #FFA31A;
-            letter-spacing: 1px;
+            text-transform: uppercase;
         }
-
+        .treino-filters {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .treino-filters button {
+            background: #333333;
+            color: #FFFFFF;
+            border: none;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .treino-filters button:hover,
+        .treino-filters button.active {
+            background: #F5A623;
+            color: #000000;
+        }
         .treinos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             max-width: 1200px;
             margin: 0 auto;
         }
-
         .treino-card {
-            background: #292929;
-            border-radius: 8px;
+            background: #1A1A1A;
+            border-radius: 10px;
             overflow: hidden;
-            transition: transform 0.3s, border 0.3s, box-shadow 0.3s, opacity 0.5s ease-out;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             cursor: pointer;
-            border: 1px solid #292929;
-            opacity: 0;
-            transform: translateY(20px);
         }
-
-        .treino-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.5s ease-out;
-        }
-
         .treino-card:hover {
-            transform: scale(1.05) rotate(1deg);
-            border: 1px solid #FFA31A;
-            box-shadow: 0 0 15px rgba(255, 163, 26, 0.3);
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 8px 20px rgba(245, 166, 35, 0.4);
         }
-
         .treino-card img {
             width: 100%;
-            height: 200px;
+            height: 180px;
             object-fit: cover;
+            border-radius: 10px 10px 0 0;
+            transition: transform 0.4s ease;
         }
-
+        .treino-card:hover img {
+            transform: scale(1.08);
+        }
         .treino-card-content {
-            padding: 20px;
+            padding: 15px;
         }
-
         .treino-card-content h3 {
-            font-size: 24px;
+            font-size: 20px;
+            font-weight: 700;
             color: #FFFFFF;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
-
         .treino-card-content p {
-            font-size: 14px;
-            color: #808080;
+            font-size: 13px;
+            color: #999999;
+            line-height: 1.4;
         }
-
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -224,168 +220,154 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
             align-items: center;
             justify-content: center;
-            z-index: 2000;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
         }
-
         .modal.visible {
-            opacity: 1;
+            display: flex;
         }
-
         .modal-content {
-            background: #292929;
-            padding: 20px;
-            border-radius: 8px;
+            background: #1A1A1A;
+            padding: 25px;
+            border-radius: 12px;
             max-width: 500px;
             width: 90%;
-            max-height: 70vh;
+            max-height: 80vh;
             overflow-y: auto;
-            position: relative;
-            transform: scale(0.95);
-            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
         }
-
-        .modal.visible .modal-content {
-            transform: scale(1);
-        }
-
         .modal-content h3 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #FFA31A;
+            font-size: 24px;
+            color: #F5A623;
+            margin-bottom: 15px;
         }
-
-        .modal-content ul {
-            list-style: none;
-        }
-
         .modal-content ul li {
-            font-size: 16px;
-            margin-bottom: 10px;
+            font-size: 15px;
             color: #FFFFFF;
+            margin-bottom: 8px;
+            line-height: 1.5;
         }
-
         .close-modal {
             position: absolute;
-            top: 10px;
+            top: 15px;
             right: 20px;
-            font-size: 24px;
+            font-size: 28px;
             cursor: pointer;
-            color: #FFFFFF;
-            transition: color 0.3s;
+            color: #999999;
+            transition: color 0.3s ease;
         }
-
         .close-modal:hover {
-            color: #FFA31A;
+            color: #F5A623;
         }
-
-        /* Botão Copiar */
         .copy-btn {
-            background: #FFA31A;
-            color: #1B1B1B;
+            background: #F5A623;
+            color: #000000;
             border: none;
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 25px;
             cursor: pointer;
-            margin-top: 20px;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background 0.3s, transform 0.3s;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
         }
-
         .copy-btn:hover {
             background: #FFFFFF;
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(245, 166, 35, 0.7);
         }
-
-        /* Footer */
         footer {
+            background: #000000;
+            padding: 15px;
             text-align: center;
-            padding: 20px;
-            background: #1B1B1B;
-            font-size: 14px;
-            color: #808080;
+            font-size: 13px;
+            color: #999999;
+            border-top: 1px solid #333333;
         }
-
-        /* Responsividade */
         @media (max-width: 768px) {
-            .hero {
-                height: 90vh;
+            .hero-content img {
+                width: 250px;
             }
-
-            header {
-                padding: 8px 10px;
+            .logo-container img {
+                width: 80px;
             }
-
             nav a {
-                margin-left: 10px;
+                font-size: 14px;
+                padding: 6px 10px;
+            }
+            .search-bar {
+                width: 120px;
                 font-size: 12px;
             }
-
-            .logo-container img {
-                width: 100px;
+            .treinos h2 {
+                font-size: 28px;
             }
-
-            .hero-content img {
-                width: 300px;
+            .treino-card img {
+                height: 150px;
             }
         }
     </style>
 </head>
 <body>
-    <video id="background-video" autoplay loop muted playsinline>
+    <video id="background-video" autoplay loop muted playsinline preload="auto">
         <source src="videos/fundo.mp4" type="video/mp4">
         Seu navegador não suporta a tag de vídeo.
     </video>
 
     <header>
         <div class="logo-container">
-            <img src="imagens/logo.png" alt="OFF-SEASON ALLDAY Logo">
+            <img src="imagens/logo.png" alt="OFF-SEASON ALLDAY Logo" loading="lazy">
             <span>By @orickmax</span>
         </div>
         <nav>
             <a href="#home">Home</a>
             <a href="#treinos">Treinos</a>
+            <input type="search" placeholder="Buscar treinos..." class="search-bar" aria-label="Buscar treinos">
         </nav>
     </header>
 
     <section class="hero" id="home">
         <div class="hero-content">
-            <img src="imagens/logo.png" alt="OFF-SEASON ALLDAY Logo">
+            <img src="imagens/logo.png" alt="OFF-SEASON ALLDAY Logo" loading="lazy">
             <a href="#treinos">Ver Treinos</a>
         </div>
     </section>
 
     <section class="treinos" id="treinos">
         <h2>OFF-SEASON ALLDAY</h2>
+        <div class="treino-filters">
+            <button data-filter="all" class="active">Todos</button>
+            <button data-filter="peito">Peito</button>
+            <button data-filter="costas">Costas</button>
+            <button data-filter="bracos">Braços</button>
+            <button data-filter="pernas">Pernas</button>
+        </div>
         <div class="treinos-grid">
             <div class="treino-card" onclick="openModal('Treino A - PEITO/OMBRO')">
-                <img src="imagens/A.png" alt="A - Peito">
+                <img src="imagens/A.png" alt="A - Peito" loading="lazy">
                 <div class="treino-card-content">
                     <h3>A - Peito</h3>
                     <p>Foco em peito com técnicas old school para hipertrofia.</p>
                 </div>
             </div>
             <div class="treino-card" onclick="openModal('Treino B - COSTAS')">
-                <img src="imagens/B.png" alt="B - Costas">
+                <img src="imagens/B.png" alt="B - Costas" loading="lazy">
                 <div class="treino-card-content">
                     <h3>B - Costas</h3>
                     <p>Treino de costas old school para largura e densidade.</p>
                 </div>
             </div>
             <div class="treino-card" onclick="openModal('Treino C - BÍCEPS/TRÍCEPS')">
-                <img src="imagens/C.png" alt="C - Bíceps e Tríceps">
+                <img src="imagens/C.png" alt="C - Bíceps e Tríceps" loading="lazy">
                 <div class="treino-card-content">
                     <h3>C - Bíceps e Tríceps</h3>
                     <p>Foco em braços com técnicas old school e bi-sets.</p>
                 </div>
             </div>
             <div class="treino-card" onclick="openModal('Treino D - LEG DAY💀')">
-                <img src="imagens/D.png" alt="D - Full Body">
+                <img src="imagens/D.png" alt="D - Full Body" loading="lazy">
                 <div class="treino-card-content">
                     <h3>D - LEG DAY💀</h3>
                     <p>Full body para resistência e condicionamento geral.</p>
@@ -394,9 +376,9 @@
         </div>
     </section>
 
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">×</span>
+    <div class="modal" id="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-content" tabindex="-1">
+            <span class="close-modal" onclick="closeModal()" aria-label="Fechar modal">×</span>
             <h3 id="modal-title"></h3>
             <ul id="modal-exercicios"></ul>
             <button class="copy-btn" onclick="copyTreino()">Copiar Treino</button>
@@ -451,57 +433,81 @@
             ]
         };
 
-        // Animação da seção Hero ao carregar a página
+        // Mapeamento de categorias para correspondência com os títulos dos treinos
+        const categoryMap = {
+            'peito': ['peito', 'ombro'],
+            'costas': ['costas'],
+            'bracos': ['bíceps', 'tríceps'],
+            'pernas': ['leg', 'day']
+        };
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Section Animation
         window.addEventListener('load', () => {
-            const heroContent = document.querySelector('.hero-content');
-            if (heroContent) {
-                heroContent.classList.add('visible');
-                console.log('Hero content animation triggered');
-            } else {
-                console.error('Hero content not found');
-            }
+            gsap.fromTo(
+                '.hero-content',
+                { opacity: 0, y: 50, scale: 0.95 },
+                { opacity: 1, y: 0, scale: 1, duration: 1.2, ease: 'power3.out' }
+            );
+            gsap.fromTo(
+                '.hero-content a',
+                { opacity: 0, scale: 0.8 },
+                { opacity: 1, scale: 1, duration: 1, delay: 0.5, ease: 'elastic.out(1, 0.5)' }
+            );
         });
 
-        // Animação dos cards da seção Treinos
+        // Treinos Section Animation
+        gsap.from('.treinos h2', {
+            scrollTrigger: {
+                trigger: '.treinos',
+                start: 'top 80%',
+                end: 'top 20%',
+                scrub: 1
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1
+        });
+
+        // Treino Cards Animation
         const treinoCards = document.querySelectorAll('.treino-card');
         const observerOptions = {
             root: null,
             threshold: 0.1
         };
 
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach((entry, index) => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                        console.log(`Card ${index} became visible`);
-                    }, index * 200); // Delay para efeito cascata
-                } else {
-                    setTimeout(() => {
-                        entry.target.classList.remove('visible');
-                        console.log(`Card ${index} became hidden`);
-                    }, index * 200); // Delay para efeito cascata ao sumir
+                    gsap.fromTo(
+                        entry.target,
+                        { opacity: 0, y: 50, scale: 0.9 },
+                        { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'power2.out' }
+                    );
                 }
             });
         }, observerOptions);
 
-        if (treinoCards.length > 0) {
-            treinoCards.forEach(card => observer.observe(card));
-            console.log('Cards observer initialized');
-        } else {
-            console.error('No treino cards found');
-        }
+        treinoCards.forEach(card => observer.observe(card));
 
-        // Funções do Modal com animação
+        // Card Click Feedback
+        treinoCards.forEach(card => {
+            card.addEventListener('mousedown', () => {
+                gsap.to(card, { scale: 0.95, duration: 0.1 });
+            });
+            card.addEventListener('mouseup', () => {
+                gsap.to(card, { scale: 1.03, duration: 0.2, ease: 'back.out(1.7)' });
+            });
+        });
+
+        // Modal Functions
         function openModal(treino) {
             const modal = document.getElementById('modal');
+            const modalContent = modal.querySelector('.modal-content');
             const modalTitle = document.getElementById('modal-title');
             const modalExercicios = document.getElementById('modal-exercicios');
-
-            if (!modal || !modalTitle || !modalExercicios) {
-                console.error('Modal elements not found');
-                return;
-            }
 
             modalTitle.textContent = treino;
             modalExercicios.innerHTML = '';
@@ -512,21 +518,29 @@
             });
 
             modal.style.display = 'flex';
-            setTimeout(() => modal.classList.add('visible'), 10);
-            console.log(`Modal opened for ${treino}`);
+            gsap.fromTo(
+                modal,
+                { opacity: 0 },
+                { opacity: 1, duration: 0.5, ease: 'power2.in' }
+            );
+            gsap.fromTo(
+                modalContent,
+                { scale: 0.8, opacity: 0 },
+                { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.7)' }
+            );
+            modalContent.focus();
         }
 
         function closeModal() {
             const modal = document.getElementById('modal');
-            if (!modal) {
-                console.error('Modal not found');
-                return;
-            }
-            modal.classList.remove('visible');
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300);
-            console.log('Modal closed');
+            gsap.to(modal, {
+                opacity: 0,
+                duration: 0.3,
+                ease: 'power2.out',
+                onComplete: () => {
+                    modal.style.display = 'none';
+                }
+            });
         }
 
         function copyTreino() {
@@ -542,20 +556,52 @@
                 setTimeout(() => {
                     copyBtn.textContent = 'Copiar Treino';
                 }, 2000);
-                console.log('Treino copied to clipboard');
             }).catch(err => {
-                console.error('Erro ao copiar o treino: ', err);
+                console.error('Erro ao copiar o treino:', err);
                 alert('Erro ao copiar o treino. Tente novamente.');
             });
         }
 
-        // Fechar modal ao clicar fora
+        // Close Modal on Outside Click
         document.getElementById('modal').addEventListener('click', (e) => {
             if (e.target === document.getElementById('modal')) {
                 closeModal();
             }
         });
+
+        // Search Functionality
+        document.querySelector('.search-bar').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            treinoCards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                const matches = title.includes(searchTerm) || description.includes(searchTerm);
+                card.style.display = matches ? 'block' : 'none';
+            });
+        });
+
+        // Filter Functionality
+        document.querySelectorAll('.treino-filters button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelector('.treino-filters button.active')?.classList.remove('active');
+                button.classList.add('active');
+                const filter = button.dataset.filter;
+                
+                treinoCards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    let matches = false;
+
+                    if (filter === 'all') {
+                        matches = true;
+                    } else {
+                        const keywords = categoryMap[filter] || [filter];
+                        matches = keywords.some(keyword => title.includes(keyword));
+                    }
+
+                    card.style.display = matches ? 'block' : 'none';
+                });
+            });
+        });
     </script>
-    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'934f78d7e9c4457b',t:'MTc0NTQzMzQ0NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>

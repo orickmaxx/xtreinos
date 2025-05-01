@@ -304,6 +304,41 @@
             color: #999999;
             border-top: 1px solid #333333;
         }
+        /* Estilo do botão de instalação do PWA */
+        #install-prompt {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #F5A623;
+            color: #000000;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 10px rgba(245, 166, 35, 0.5);
+            z-index: 1000;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        #install-prompt button {
+            background: #FFFFFF;
+            color: #000000;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        #install-prompt button:hover {
+            background: #E0E0E0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(245, 166, 35, 0.7);
+        }
         @media (max-width: 768px) {
             .hero-content img {
                 width: 250px;
@@ -328,6 +363,16 @@
             }
             .treinos-grid {
                 grid-template-columns: repeat(auto-fill, minmax(280px, 320px));
+            }
+            #install-prompt {
+                bottom: 10px;
+                right: 10px;
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+            #install-prompt button {
+                padding: 6px 10px;
+                font-size: 12px;
             }
         }
     </style>
@@ -410,6 +455,12 @@
     <footer>
         <p>© 2025 OFF-SEASON ALLDAY. Todos os direitos reservados.</p>
     </footer>
+
+    <!-- Botão de instalação do PWA -->
+    <div id="install-prompt">
+        Instale o GYMHUB App para acesso offline!
+        <button onclick="promptInstall()">Instalar</button>
+    </div>
 
     <script>
         // Dados dos treinos
@@ -646,6 +697,27 @@
                     .catch(error => {
                         console.log('Falha ao registrar o Service Worker:', error);
                     });
+            });
+        }
+
+        // Lógica para o botão de instalação do PWA
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('install-prompt').style.display = 'flex';
+        });
+
+        function promptInstall() {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('Usuário aceitou instalar o app');
+                } else {
+                    console.log('Usuário recusou instalar o app');
+                }
+                deferredPrompt = null;
+                document.getElementById('install-prompt').style.display = 'none';
             });
         }
     </script>

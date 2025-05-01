@@ -1,0 +1,26 @@
+{
+    "name": "GYMHUB - Treinos para Hipertrofia",
+    "short_name": "GYMHUB",
+    "description": "Treinos old school para hipertrofia e condicionamento físico.",
+    "start_url": "/site-de-treino/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#F5A623",
+    "icons": [
+      {
+        "src": "imagens/logo.png",
+        "sizes": "100x100",
+        "type": "image/png"
+      },
+      {
+        "src": "imagens/logo.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "imagens/logo.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
